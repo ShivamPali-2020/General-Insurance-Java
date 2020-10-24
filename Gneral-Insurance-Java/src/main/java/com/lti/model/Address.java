@@ -8,32 +8,40 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="demo-address")
+@Table(name = "demo-address")
 public class Address {
 	@Id
 	long addressId;
-	
-	@Column(name="houseNo")
 	int houseNo;
-	
-	@Column(name="street")
 	String street;
-	
-	@Column(name="landmark")
 	String landmark;
-	
-	@Column(name="district")
 	String district;
-	
-	@Column(name="state")
 	String state;
-	
-	@Column(name="pincode")
-	Number pincode;
+	int pincode;
 
-	@OneToOne(mappedBy="address",cascade=CascadeType.ALL)
+	@OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
 	User user;
-	
+
+	public int getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setAddressId(long addressId) {
+		this.addressId = addressId;
+	}
+
 	public long getAddressId() {
 		return addressId;
 	}
@@ -82,12 +90,4 @@ public class Address {
 		this.state = state;
 	}
 
-	public Number getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(Number pincode) {
-		this.pincode = pincode;
-	}
-	
 }

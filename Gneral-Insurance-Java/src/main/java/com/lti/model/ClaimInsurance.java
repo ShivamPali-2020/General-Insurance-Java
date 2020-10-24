@@ -4,58 +4,82 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="demo_claim_insurance")
+@Table(name = "demo-ClaimInsurance")
 public class ClaimInsurance {
-	@Column(name="claim_id")
-long claimId;
-	@Column(name="policy_no")
-	long policyNo;
-	@Column(name="reason")   //--------------------------------???
+	@Id
+	long claimId;
 	String reason;
-	@Column(name="claim_date")
 	LocalDate date;
-	@Column(name="claim_amount")
 	double amount;
-	@Column(name="claim_status")
-	String status;
+	Status status;
+
+	@ManyToOne
+	@JoinColumn(name = "adminId")
+	Admin admin;
+
+	@ManyToOne
+	@JoinColumn(name = "policyNo")
+	BuyInsurance buyInsurance;
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
+	public BuyInsurance getBuyInsurance() {
+		return buyInsurance;
+	}
+
+	public void setBuyInsurance(BuyInsurance buyInsurance) {
+		this.buyInsurance = buyInsurance;
+	}
+
 	public long getClaimId() {
 		return claimId;
 	}
+
 	public void setClaimId(long claimId) {
 		this.claimId = claimId;
-	}
-	public long getPolicyNo() {
-		return policyNo;
-	}
-	public void setPolicyNo(long policyNo) {
-		this.policyNo = policyNo;
 	}
 	public String getReason() {
 		return reason;
 	}
+
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+
 	public LocalDate getDate() {
 		return date;
 	}
+
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
 	public double getAmount() {
 		return amount;
 	}
+
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	public String getStatus() {
+
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+
+	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
+
 }
